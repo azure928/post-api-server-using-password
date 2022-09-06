@@ -11,4 +11,7 @@ router.get('/posts/test', function (req, res, next) {
 // 게시물 목록
 router.get('/posts', postController.readPostList);
 
+// 게시물 작성
+router.post('/posts', postController.createPost);
+
 export default router;

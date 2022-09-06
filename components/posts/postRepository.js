@@ -21,3 +21,14 @@ export async function readPostList(page) {
   });
   return posts;
 }
+
+export const createPost = async (title, content, writer, password) => {
+  return await prisma.posts.create({
+    data: {
+      title,
+      content,
+      writer,
+      password,
+    },
+  });
+};
