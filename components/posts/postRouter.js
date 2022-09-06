@@ -38,4 +38,7 @@ router.get('/posts', postController.readPostList);
 // 게시물 작성
 router.post('/posts', validateCredential, postController.createPost);
 
+// 게시물 삭제
+router.delete('/posts/:id', postController.deletePost);
+
 export default router;
