@@ -6,6 +6,14 @@ import { validate } from '../../middleware/validator.js';
 const router = express.Router();
 
 const validateCredential = [
+  body('password')
+    .notEmpty()
+    .withMessage('비밀번호를 입력해 주세요.')
+    .trim()
+    .isLength({ min: 6 })
+    .withMessage('비밀번호는 6자 이상 입력해 주세요.')
+    .matches(/\d/)
+    .withMessage('비밀번호는 숫자를 포함하여 입력해 주세요.'),
   body('title')
     .notEmpty()
     .withMessage('제목을 입력해 주세요.')
@@ -16,14 +24,6 @@ const validateCredential = [
     .trim()
     .isLength({ max: 200 })
     .withMessage('본문은 200자 이하로 입력해 주세요.'),
-  body('password')
-    .notEmpty()
-    .withMessage('비밀번호를 입력해 주세요.')
-    .trim()
-    .isLength({ min: 6 })
-    .withMessage('비밀번호는 6자 이상 입력해 주세요.')
-    .matches(/\d/)
-    .withMessage('비밀번호는 숫자를 포함하여 입력해 주세요.'),
   validate,
 ];
 
@@ -40,5 +40,8 @@ router.post('/posts', validateCredential, postController.createPost);
 
 // 게시물 삭제
 router.delete('/posts/:id', postController.deletePost);
+
+// 게시물 수정
+router.put('/posts/:id', validateCredential, postController.updatePost);
 
 export default router;

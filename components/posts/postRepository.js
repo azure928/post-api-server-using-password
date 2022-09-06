@@ -33,10 +33,22 @@ export const createPost = async (title, content, writer, hash) => {
   });
 };
 
-export const deletePost = async id => {
+export const deletePostById = async id => {
   return await prisma.posts.delete({ where: { id: Number(id) } });
 };
 
 export async function readPostById(id) {
   return await prisma.posts.findUnique({ where: { id: Number(id) } });
 }
+
+export const updatePostById = async (id, title, content) => {
+  return await prisma.posts.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      title,
+      content,
+    },
+  });
+};

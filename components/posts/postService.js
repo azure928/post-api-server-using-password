@@ -13,8 +13,8 @@ export async function readPostList(page) {
   }
 }
 
-export async function createPost(post) {
-  const { title, content, writer, password } = post;
+export async function createPost(inputContent) {
+  const { title, content, writer, password } = inputContent;
 
   if (!title) {
     const error = new Error('제목을 입력해 주세요.');
@@ -56,5 +56,27 @@ export async function deletePost(id, password) {
     throw error;
   } else {
     await postRepository.deletePost(id);
+  }
+}
+
+export async function updatePost(inputContent) {
+  const { id, title, content, password } = inputContent;
+
+  const post = await postRepository.readPostById(id);
+
+  if (!post) {
+    const error = new Error('수정할 게시물이 존재하지 않습니다.');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const isCorrect = await bcrypt.compare(password, post.password);
+
+  if (!isCorrect) {
+    const error = new Error('비밀번호가 일치하지 않습니다.');
+    error.statusCode = 400;
+    throw error;
+  } else {
+    await postRepository.updatePostById(id, title, content);
   }
 }
