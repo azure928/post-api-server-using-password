@@ -32,3 +32,13 @@ export async function createPost(post) {
     return await postRepository.createPost(title, content, writer, hash);
   }
 }
+
+export async function deletePost(id, password) {
+  if (!password) {
+    const error = new Error('비밀번호를 입력해 주세요.');
+    error.statusCode = 400;
+    throw error;
+  } else {
+    await postRepository.deletePost(id, password);
+  }
+}

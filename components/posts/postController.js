@@ -2,7 +2,7 @@ import * as postService from './postService.js';
 
 export const readPostList = async (req, res) => {
   try {
-    let page = req.query.page;
+    const page = req.query.page;
 
     const posts = await postService.readPostList(page);
     res.status(200).json(posts);
@@ -18,7 +18,7 @@ export const readPostList = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
-    let { title, content, writer, password } = req.body;
+    const { title, content, writer, password } = req.body;
 
     await postService.createPost({
       title,
@@ -27,6 +27,23 @@ export const createPost = async (req, res) => {
       password,
     });
     return res.status(201).json({ message: '게시물 작성 성공' });
+  } catch (error) {
+    console.log(error);
+    return res.status(error.statusCode || 500).send(
+      { error: error.message } || {
+        error: 'Internal Server Error',
+      }
+    );
+  }
+};
+
+export const deletePost = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const password = req.body.password;
+
+    await postService.deletePost(id, password);
+    return res.status(200).json({ message: '게시물 삭제 성공' });
   } catch (error) {
     console.log(error);
     return res.status(error.statusCode || 500).send(
