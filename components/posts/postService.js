@@ -3,7 +3,8 @@ import bcrypt from 'bcrypt';
 
 export async function readPostList(page) {
   const posts = await postRepository.readPostList(page);
-  if (!posts) {
+
+  if (posts.length == 0) {
     const error = new Error();
     error.statusCode = 204;
     throw error;
