@@ -8,13 +8,11 @@ export const readPostList = async (req, res) => {
     res.status(200).json(posts);
   } catch (error) {
     console.log(error);
-    return res
-      .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
-      .send(
-        { error: error.message } || {
-          error: 'Internal Server Error',
-        }
-      );
+    return res.status(error.statusCode || 500).send(
+      { error: error.message } || {
+        error: 'Internal Server Error',
+      }
+    );
   }
 };
 
@@ -31,12 +29,10 @@ export const createPost = async (req, res) => {
     return res.status(201).json({ message: '게시물 작성 성공' });
   } catch (error) {
     console.log(error);
-    return res
-      .status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR)
-      .send(
-        { error: error.message } || {
-          error: 'Internal Server Error',
-        }
-      );
+    return res.status(error.statusCode || 500).send(
+      { error: error.message } || {
+        error: 'Internal Server Error',
+      }
+    );
   }
 };

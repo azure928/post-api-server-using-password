@@ -1,4 +1,5 @@
 import * as postRepository from './postRepository.js';
+import bcrypt from 'bcrypt';
 
 export async function readPostList(page) {
   const posts = await postRepository.readPostList(page);
@@ -24,6 +25,9 @@ export async function createPost(post) {
     error.statusCode = 400;
     throw error;
   } else {
-    return await postRepository.createPost(title, content, writer, password);
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(password, salt);
+
+    return await postRepository.createPost(title, content, writer, hash);
   }
 }
