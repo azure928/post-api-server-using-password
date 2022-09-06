@@ -60,7 +60,7 @@ export const updatePost = async (req, res) => {
     const { title, content, password } = req.body;
 
     await postService.updatePost({ id, title, content, password });
-    return res.status(200).json({ message: '게시물 수정 성공' });
+    return res.status(201).json({ message: '게시물 수정 성공' });
   } catch (error) {
     console.log(error);
     return res.status(error.statusCode || 500).send(

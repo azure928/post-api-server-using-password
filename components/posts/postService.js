@@ -52,7 +52,7 @@ export async function deletePost(id, password) {
 
   if (!isCorrect) {
     const error = new Error('비밀번호가 일치하지 않습니다.');
-    error.statusCode = 400;
+    error.statusCode = 401;
     throw error;
   } else {
     await postRepository.deletePost(id);
@@ -74,7 +74,7 @@ export async function updatePost(inputContent) {
 
   if (!isCorrect) {
     const error = new Error('비밀번호가 일치하지 않습니다.');
-    error.statusCode = 400;
+    error.statusCode = 401;
     throw error;
   } else {
     await postRepository.updatePostById(id, title, content);
