@@ -15,12 +15,12 @@ export async function createPost(post) {
   const { title, content, writer, password } = post;
 
   if (!title) {
-    const error = new Error('제목을 입력해주세요.');
+    const error = new Error('제목을 입력해 주세요.');
     error.statusCode = 400;
     throw error;
   }
   if (!password) {
-    const error = new Error('비밀번호를 입력해주세요.');
+    const error = new Error('비밀번호를 입력해 주세요.');
     error.statusCode = 400;
     throw error;
   } else {
