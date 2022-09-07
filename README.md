@@ -1,6 +1,6 @@
 # 비밀번호 설정 가능한 비회원 게시판 RESTful API Server
 
-> 원티드 프리온보딩 백엔드 코스 - 띵스플로우 기업 과제를 위한 레포지토리 입니다.
+> 원티드 프리온보딩 백엔드 코스 - 기업 과제를 위한 레포지토리
 
 <br>
 
@@ -78,7 +78,7 @@ WEATHER_API_KEY=1234567   //발급 받은 Weather API key
 
 - 제시된 제약 조건에 대해 express-validator를 이용하여 validation 구현했습니다.
   - 제목은 최대 20자, 본문은 최대 200자로 제한
-  - 비밀번호는 6자 이상 / 숫자 1개 이상 반드시 포함=
+  - 비밀번호는 6자 이상 / 숫자 1개 이상 반드시 포함
 - 이용자가 입력한 비밀번호를 bcrypt를 이용하여 암호화된 형태로 데이터베이스에 저장하도록 구현했습니다.
 - Real-time Weather API 이용하여 게시글을 업로드한 시점의 날씨 정보가 게시글에 포함되도록 구현했습니다.
 
@@ -182,8 +182,7 @@ WEATHER_API_KEY=1234567   //발급 받은 Weather API key
       "title": "제목23",
       "content": "내용",
       "writer": "작성자",
-      "password": "비밀번호",
-      "weather": null,
+      "weather": "대체로 맑음",
       "status": 1,
       "created_at": "2022-09-06T22:46:07.000Z",
       "updated_at": "2022-09-06T22:46:07.000Z"
@@ -193,8 +192,7 @@ WEATHER_API_KEY=1234567   //발급 받은 Weather API key
       "title": "제목22",
       "content": "내용",
       "writer": "작성자",
-      "password": "비밀번호",
-      "weather": null,
+      "weather": "대체로 맑음",
       "status": 1,
       "created_at": "2022-09-06T22:46:02.000Z",
       "updated_at": "2022-09-06T22:46:02.000Z"
