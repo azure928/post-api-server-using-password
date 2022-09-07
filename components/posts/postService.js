@@ -61,7 +61,7 @@ export async function deletePost(id, password) {
     error.statusCode = 401;
     throw error;
   } else {
-    await postRepository.deletePost(id);
+    await postRepository.deletePostById(id);
   }
 }
 
