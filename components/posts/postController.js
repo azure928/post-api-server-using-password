@@ -1,4 +1,5 @@
 import * as postService from './postService.js';
+import axios from 'axios';
 
 export const readPostList = async (req, res) => {
   try {
@@ -18,6 +19,8 @@ export const readPostList = async (req, res) => {
 
 export const createPost = async (req, res) => {
   try {
+    const currentWeather = await getWeather();
+
     const { title, content, writer, password } = req.body;
 
     await postService.createPost({
@@ -25,6 +28,7 @@ export const createPost = async (req, res) => {
       content: content ? content : null,
       writer: writer ? writer : null,
       password,
+      currentWeather,
     });
     return res.status(201).json({ message: '게시물 작성 성공' });
   } catch (error) {
@@ -69,4 +73,42 @@ export const updatePost = async (req, res) => {
       }
     );
   }
+};
+
+/*
+// 날씨 api 호출
+export const requestWeatherApi = async (req, res) => {
+  const apiKey = process.env.WEATHER_API_KEY;
+
+  const url_for_weather = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Seoul&aqi=no&lang=ko`;
+
+  await axios
+    .get(url_for_weather)
+    .then(function (response) {
+      res.status(response.status).json(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(error.response.status || 500).json(error.response.data);
+    });
+};*/
+
+// 날씨 api 호출하여 현재 날씨 리턴하는 함수
+export const getWeather = async () => {
+  const apiKey = process.env.WEATHER_API_KEY;
+  const url_for_weather = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Seoul&aqi=no&lang=ko`;
+
+  let currentWeather = null;
+  currentWeather = await axios
+    .get(url_for_weather)
+    .then(function (response) {
+      const weather = response.data.current.condition.text;
+      return weather;
+    })
+    .catch(function (error) {
+      console.log(error);
+      throw error;
+    });
+
+  return currentWeather;
 };

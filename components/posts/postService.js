@@ -14,7 +14,7 @@ export async function readPostList(page) {
 }
 
 export async function createPost(inputContent) {
-  const { title, content, writer, password } = inputContent;
+  const { title, content, writer, password, currentWeather } = inputContent;
 
   if (!title) {
     const error = new Error('제목을 입력해 주세요.');
@@ -29,7 +29,13 @@ export async function createPost(inputContent) {
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(password, salt);
 
-    return await postRepository.createPost(title, content, writer, hash);
+    return await postRepository.createPost(
+      title,
+      content,
+      writer,
+      hash,
+      currentWeather
+    );
   }
 }
 
