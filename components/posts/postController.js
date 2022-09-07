@@ -26,7 +26,7 @@ export const createPost = async (req, res) => {
     await postService.createPost({
       title,
       content: content ? content : null,
-      writer: writer ? writer : null,
+      writer: writer ? writer : '익명',
       password,
       currentWeather,
     });
