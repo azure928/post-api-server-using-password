@@ -44,4 +44,7 @@ router.delete('/posts/:id', postController.deletePost);
 // 게시물 수정
 router.put('/posts/:id', validateCredential, postController.updatePost);
 
+// 날씨 요청
+router.get('/weather', postController.getWeather);
+
 export default router;

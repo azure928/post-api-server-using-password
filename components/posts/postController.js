@@ -1,4 +1,5 @@
 import * as postService from './postService.js';
+import axios from 'axios';
 
 export const readPostList = async (req, res) => {
   try {
@@ -69,4 +70,23 @@ export const updatePost = async (req, res) => {
       }
     );
   }
+};
+
+// 날씨
+export const getWeather = async (req, res) => {
+  const apiKey = process.env.WEATHER_API_KEY;
+
+  const url_for_weather = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=London&aqi=no&lang=ko`;
+
+  await axios
+    .get(url_for_weather)
+    .then(function (response) {
+      console.log('response.data : ', response.data);
+
+      res.status(response.status).json(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.status(error.response.status || 500).json(error.response.data);
+    });
 };
