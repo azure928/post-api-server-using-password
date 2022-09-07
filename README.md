@@ -58,10 +58,10 @@
 
 ### 🔐 환경 변수 설정
 
-```JSON
-PORT="10010"  // 포트번호
+```
+PORT="10010"   //포트번호
 DATABASE_URL="mysql://user:mysql비밀번호@localhost:mysql설정된port/데이터베이스이름"
-WEATHER_API_KEY=1234567 //발급 받은 Weather API key
+WEATHER_API_KEY=1234567   //발급 받은 Weather API key
 ```
 
 <br>
@@ -77,12 +77,9 @@ WEATHER_API_KEY=1234567 //발급 받은 Weather API key
 ### 1. 게시물 등록
 
 - 제시된 제약 조건에 대해 express-validator를 이용하여 validation 구현했습니다.
-
   - 제목은 최대 20자, 본문은 최대 200자로 제한
-  - 비밀번호는 6자 이상 / 숫자 1개 이상 반드시 포함
-
+  - 비밀번호는 6자 이상 / 숫자 1개 이상 반드시 포함=
 - 이용자가 입력한 비밀번호를 bcrypt를 이용하여 암호화된 형태로 데이터베이스에 저장하도록 구현했습니다.
-
 - Real-time Weather API 이용하여 게시글을 업로드한 시점의 날씨 정보가 게시글에 포함되도록 구현했습니다.
 
 - **Method** : POST
@@ -166,7 +163,7 @@ WEATHER_API_KEY=1234567 //발급 받은 Weather API key
 - query string 으로 page number를 받아서 게시물 목록을 최신순으로 20개씩 조회합니다.
 
 - **Method** : GET
-- **URI** : posts?page=1
+- **URI** : /posts?page=1
 - **Requset**
 
   ```json
