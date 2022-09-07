@@ -4,7 +4,7 @@
 
 <br>
 
-## 📢 서비스 개요
+## 📢 서비스 개요 (요구사항 분석)
 
 **비밀번호 설정 가능한 비회원 게시판**
 
@@ -16,10 +16,11 @@
 - 한 페이지 내에서 모든 게시글을 최신 글 순서로 확인할 수 있다.
   - 무한 스크롤로 구현 (추가 로드는 20개씩)
 - 사용자가 게시글을 업로드한 시점의 날씨(예: 맑음, 흐림, 소나기, 눈 등) 정보가 게시글에 포함된다.
+  <br>
 
 ### 📚 ERD
 
-![image](https://i.imgur.com/JR5I5Pt.png)![image](https://i.imgur.com/0mnTZut.png)
+![image](https://i.imgur.com/6CGiAjq.png)
 
 ### ⚒ 적용 기술
 
@@ -55,11 +56,31 @@
 └── server.js
 ```
 
+### 🔐 환경 변수 설정
+
+```JSON
+## .env
+
+PORT="10010"  // 포트번호
+DATABASE_URL="mysql://user:mysql비밀번호@localhost:mysql설정된port/데이터베이스이름"
+WEATHER_API_KEY=1234567 //발급 받은 Weather API key
+```
+
+<br>
+
+## 📃 API DOCS
+
+**[🔗 PostMan API Document](https://documenter.getpostman.com/view/21288917/VVBS1o9Z)**
+
+<br>
+
 ## 💬 요구사항 구현 내용
 
 ### 요구사항1
 
 **요구사항**
+
+<br>
 
 ## 💡 실행 방법
 
@@ -71,14 +92,16 @@ npm install
 npm start
 ```
 
+<br>
+
 ## 📝 커밋 컨벤션
 
-`Init:` 프로젝트 초기 세팅  
-`Feat:` 새로운 기능 추가  
-`Modify:` 코드 수정 (버그 x)  
-`Fix:` 버그 수정 (올바르지 않은 동작을 고친 경우에 사용)  
-`Docs:` 문서 작성, 수정  
-`Style:` 코드 스타일 수정 (개행 등)  
-`refactor:` 코드 리팩토링 (코드의 기능 변화 없이 수정)  
-`Test:` 테스트 코드 추가  
-`Chore:` 빌드 업무 수정, 패키지 매니저 수정, 그 외 자잘한 수정에 대한 커밋
+- `Init:` 프로젝트 초기 세팅
+- `Feat:` 새로운 기능 추가
+- `Modify:` 코드 수정 (버그 x)
+- `Fix:` 버그 수정 (올바르지 않은 동작을 고친 경우에 사용)
+- `Docs:` 문서 작성, 수정
+- `Style:` 코드 스타일 수정 (개행 등)
+- `refactor:` 코드 리팩토링 (코드의 기능 변화 없이 수정)
+- `Test:` 테스트 코드 추가  
+  -`Chore:` 빌드 업무 수정, 패키지 매니저 수정, 그 외 자잘한 수정에 대한 커밋
